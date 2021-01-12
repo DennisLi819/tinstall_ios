@@ -25,16 +25,14 @@
     self.contentLab.text = @"";
     [TInstall getWithInstallResult:^(NSDictionary * _Nullable data) {
         NSLog(@"%@",data);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (data) {
-                NSArray *dicArr = data.allKeys;
-                if (dicArr.count > 0) {
-                    self.contentLab.text = [NSString stringWithFormat:@"id:%@",[data valueForKey:@"id"]];
-                } else {
-                    self.contentLab.text = @"获取失败";
-                }
+        if (data) {
+            NSArray *dicArr = data.allKeys;
+            if (dicArr.count > 0) {
+                self.contentLab.text = [NSString stringWithFormat:@"id:%@",[data valueForKey:@"id"]];
+            } else {
+                self.contentLab.text = @"获取失败";
             }
-        });
+        }
     }];
 }
 
